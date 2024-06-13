@@ -1,0 +1,34 @@
+---
+- name: Create Virtual Hubs
+  softether_vpn:
+    command: CreateHub
+    name: "{{ item }}"
+  loop:
+    - PROD
+    - TEST
+    - STAFF
+
+- name: Create users for VirtualHub PROD
+  softether_vpn:
+    command: CreateUser
+    hub: PROD
+    users:
+      - pr_user1
+      - pr_user2
+
+- name: Create users for VirtualHub TEST
+  softether_vpn:
+    command: CreateUser
+    hub: TEST
+    users:
+      - t_user1
+      - t_user2
+
+- name: Create users for VirtualHub STAFF
+  softether_vpn:
+    command: CreateUser
+    hub: STAFF
+    users:
+      - ceo
+      - cto
+      - admin

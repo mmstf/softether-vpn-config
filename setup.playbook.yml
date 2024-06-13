@@ -1,0 +1,9 @@
+---
+
+- name: VPN configuration
+  hosts: all
+  become: true
+  any_errors_fatal: true
+
+  roles:
+    - role: configure
