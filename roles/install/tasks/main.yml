@@ -11,6 +11,28 @@
     dest: /opt
     remote_src: true
 
+- name: Debian OS Update
+  apt:
+    update_cache: true
+    upgrade: yes
+  when: ansible_os_family == "Debian"
+
+- name: Install Compiler component Debian family
+  apt:
+    name:
+    - gcc
+    - make
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Install Compiler component RH family
+  yum:
+    name:
+    - gcc
+    - make
+    state: present
+  when: ansible_os_family == "RedHat"
+
 - name: Compile SoftEther VPN
   shell: |
     cd /opt/vpnserver
